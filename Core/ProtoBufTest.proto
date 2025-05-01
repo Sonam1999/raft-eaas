@@ -31,7 +31,7 @@ message TestMessage {
 
 message MissingOld {
     enum TestEnum {
-	UNKNOWN_OP = 0;
+        UNKNOWN_OPTESTNUM = 0;
         UNKNOWN = 90; // must be top
         THREE = 3;
         TWO = 2;
@@ -42,7 +42,7 @@ message MissingOld {
 
 message MissingNew {
     enum TestEnum {
-	UNKNOWN = 0;
+	UNKNOWN_OpTESTDEFAULT = 0;
         ONE = 1;
         TWO = 2;
         THREE = 3;

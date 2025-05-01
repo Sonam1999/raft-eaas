@@ -27,7 +27,7 @@ package LogCabin.Protocol.Raft;
  */
 enum OpCode {
     // Keep these numbers dense.
-    UNKNOWN_OpCode = 0;
+    UNKNOWN_OPCODE = 0;
     REQUEST_VOTE = 1;
     APPEND_ENTRIES = 2;
     INSTALL_SNAPSHOT = 3;
