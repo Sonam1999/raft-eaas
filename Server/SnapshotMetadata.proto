@@ -25,12 +25,12 @@ message Header {
     /**
      * The snapshot covers log entries in the range [1, lastIncludedIndex].
      */
-    uint64 last_included_index = 1;
+    optional uint64 last_included_index = 1;
 
     /**
      * The term of the lastIncludedIndex entry.
      */
-    uint64 last_included_term = 4;
+    optional uint64 last_included_term = 4;
 
     /**
      * The cluster time of the lastIncludedIndex entry.

@@ -33,20 +33,20 @@ message VersionUpdate {
      * The log index when the replicated state machine's running version
      * was changed.
      */
-    uint64 log_index = 1;
+    optional uint64 log_index = 1;
     /**
      * The version it was changed to.
      */
-    uint32 version = 2;
+    optional uint32 version = 2;
 };
 
 /**
  * An individual client session.
  */
 message Session {
-    uint64 client_id = 1;
-    uint64 last_modified = 2;
-    uint64 first_outstanding_rpc = 3;
+    optional uint64 client_id = 1;
+    optional uint64 last_modified = 2;
+    optional uint64 first_outstanding_rpc = 3;
     repeated Response rpc_response = 4;
 }
 
@@ -55,8 +55,8 @@ message Session {
  * (There may be more than one for multi-threaded clients.)
  */
 message Response {
-    uint64 rpc_number = 1;
-    Protocol.Client.StateMachineCommand.Response response = 2;
+    optional uint64 rpc_number = 1;
+    optional Protocol.Client.StateMachineCommand.Response response = 2;
 }
 
 message Header {

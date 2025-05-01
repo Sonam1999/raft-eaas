@@ -24,8 +24,8 @@ package LogCabin.Storage.SimpleFileLogMetadata;
 import "build/Protocol/RaftLogMetadata.proto";
 
 message Metadata {
-    uint64 version = 1;
-    Protocol.RaftLogMetadata.Metadata raft_metadata = 2;
-    uint64 entries_start = 3; // inclusive
-    uint64 entries_end = 4; // inclusive
+    optional uint64 version = 1;
+    optional Protocol.RaftLogMetadata.Metadata raft_metadata = 2;
+    optional uint64 entries_start = 3; // inclusive
+    optional uint64 entries_end = 4; // inclusive
 }

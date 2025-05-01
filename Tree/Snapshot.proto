@@ -31,5 +31,5 @@ message Directory {
  */
 message File {
     /// The contents of the file.
-    bytes contents = 1;
+    optional bytes contents = 1;
 }
