@@ -18,6 +18,8 @@
  * Contains the format for SegmentedLog's metadata files.
  */
 
+syntax = "proto3";
+
 package LogCabin.Storage.SegmentedLogMetadata;
 
 import "build/Protocol/RaftLogMetadata.proto";
@@ -31,7 +33,7 @@ message Metadata {
      * The version of the storage module that created this file. If an older
      * storage module finds a newer format version here, it will PANIC.
      */
-    required uint64 format_version = 4;
+    uint64 format_version = 4;
 
 
 
@@ -40,7 +42,7 @@ message Metadata {
      * are stored in the file named metadata1, and even versions are stored in
      * the file named metadata2.
      */
-    required uint64 version = 1;
+    uint64 version = 1;
 
     /**
      * Metadata from Raft, including the current term and vote.
@@ -50,5 +52,5 @@ message Metadata {
     /**
      * The log start index.
      */
-    required uint64 entries_start = 3;
+    uint64 entries_start = 3;
 }

@@ -12,6 +12,8 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+syntax = "proto3";
+
 package LogCabin.Server.SnapshotMetadata;
 
 import "build/Protocol/Raft.proto";
@@ -23,12 +25,12 @@ message Header {
     /**
      * The snapshot covers log entries in the range [1, lastIncludedIndex].
      */
-    required uint64 last_included_index = 1;
+    uint64 last_included_index = 1;
 
     /**
      * The term of the lastIncludedIndex entry.
      */
-    required uint64 last_included_term = 4;
+    uint64 last_included_term = 4;
 
     /**
      * The cluster time of the lastIncludedIndex entry.

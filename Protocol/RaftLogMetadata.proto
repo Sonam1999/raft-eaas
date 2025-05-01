@@ -12,9 +12,11 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+syntax = "proto3";
+
 package LogCabin.Protocol.RaftLogMetadata;
 
 message Metadata {
-    required uint64 current_term = 1;
-    required uint64 voted_for = 2;
+    optional uint64 current_term = 1;
+    optional uint64 voted_for = 2;
 }

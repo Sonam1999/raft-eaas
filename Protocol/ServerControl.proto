@@ -12,6 +12,8 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+syntax = "proto3";
+
 package LogCabin.Protocol.ServerControl;
 
 import "build/Protocol/ServerStats.proto";
@@ -26,6 +28,7 @@ import "build/Protocol/ServerStats.proto";
  * Identifies which RPC is being executed.
  */
 enum OpCode {
+    UNKNOWN_OP = 0;
     DEBUG_FILENAME_GET = 1;
     DEBUG_FILENAME_SET = 2;
     DEBUG_POLICY_GET = 3;
@@ -37,7 +40,7 @@ enum OpCode {
     SNAPSHOT_CONTROL = 9;
     SNAPSHOT_INHIBIT_GET = 10;
     SNAPSHOT_INHIBIT_SET = 11;
-};
+}
 
 /**
  * The type of "service-specific error" replies that this service returns.
@@ -46,7 +49,7 @@ message Error {
     // No errors are defined.
     //enum Code {
     //};
-    //required Code error_code = 1;
+    // Code error_code = 1;
 }
 
 /**
@@ -185,7 +188,7 @@ enum SnapshotCommand {
      * then begin taking a new snapshot.
      */
     RESTART_SNAPSHOT = 3;
-};
+}
 
 /**
  * SnapshotControl RPC: Tell the server's state machine to start or abort
@@ -196,7 +199,7 @@ message SnapshotControl {
         /**
          * What to do.
          */
-        required SnapshotCommand command = 1;
+        SnapshotCommand command = 1;
     }
     message Response {
         /**

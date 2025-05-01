@@ -12,6 +12,8 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+syntax = "proto3";
+
 package LogCabin.Tree.Snapshot;
 
 /**
@@ -29,5 +31,5 @@ message Directory {
  */
 message File {
     /// The contents of the file.
-    required bytes contents = 1;
+    bytes contents = 1;
 }

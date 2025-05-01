@@ -19,6 +19,8 @@
  * snapshots.
  */
 
+syntax = "proto3";
+
 package LogCabin.Server.SnapshotStateMachine;
 
 import "build/Protocol/Client.proto";
@@ -31,20 +33,20 @@ message VersionUpdate {
      * The log index when the replicated state machine's running version
      * was changed.
      */
-    required uint64 log_index = 1;
+    uint64 log_index = 1;
     /**
      * The version it was changed to.
      */
-    required uint32 version = 2;
+    uint32 version = 2;
 };
 
 /**
  * An individual client session.
  */
 message Session {
-    required uint64 client_id = 1;
-    required uint64 last_modified = 2;
-    required uint64 first_outstanding_rpc = 3;
+    uint64 client_id = 1;
+    uint64 last_modified = 2;
+    uint64 first_outstanding_rpc = 3;
     repeated Response rpc_response = 4;
 }
 
@@ -53,8 +55,8 @@ message Session {
  * (There may be more than one for multi-threaded clients.)
  */
 message Response {
-    required uint64 rpc_number = 1;
-    required Protocol.Client.StateMachineCommand.Response response = 2;
+    uint64 rpc_number = 1;
+    Protocol.Client.StateMachineCommand.Response response = 2;
 }
 
 message Header {
@@ -68,4 +70,3 @@ message Header {
      */
     repeated Session session = 2;
 };
-
