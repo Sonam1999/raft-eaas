@@ -28,7 +28,7 @@ import "build/Protocol/ServerStats.proto";
  * Identifies which RPC is being executed.
  */
 enum OpCode {
-    UNKNOWN_OP = 0;
+    UNKNOWN_OPTESTENUM = 0;
     DEBUG_FILENAME_GET = 1;
     DEBUG_FILENAME_SET = 2;
     DEBUG_POLICY_GET = 3;
