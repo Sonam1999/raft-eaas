@@ -197,6 +197,14 @@ if env["VERBOSE"] == "0":
 env.Append(CPPPATH = '#')
 env.Append(CPPPATH = '#/include')
 
+env.Append(
+    CPPPATH=['/users/Sonam911/EaaS/local_install/include'],
+    LIBPATH=['/users/Sonam911/EaaS/local_install/lib'],
+    LIBS=['eaas_evalc'],
+    RPATH=['/users/Sonam911/EaaS/local_install/lib']
+)
+
+
 # Define protocol buffers builder to simplify SConstruct files
 def Protobuf(env, source):
     # First build the proto file
