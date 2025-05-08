@@ -2813,9 +2813,9 @@ namespace LogCabin
                 uint64_t n = consensus->packEntries(3U, request);
                 EXPECT_GT(5000U, n);
                 EXPECT_LT(0U, n);
-                EXPECT_GE(1024, request.ByteSizeLong());
+                EXPECT_GE(1024U, request.ByteSizeLong());
                 *request.add_entries() = consensus->log->getEntry(3);
-                EXPECT_LE(1024, request.ByteSizeLong());
+                EXPECT_LE(1024U, request.ByteSizeLong());
                 request.clear_entries();
 
                 // one entry is allowed even if it's too big

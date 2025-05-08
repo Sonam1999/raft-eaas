@@ -22,7 +22,7 @@ namespace
     {
     public:
         OptionParser(int &argc, char **&argv)
-            : argc(argc), argv(argv), cluster("node0:26257"), logPolicy(""), timeout(parseNonNegativeDuration("0s"))
+            : argc(argc), argv(argv), cluster("node1:26257"), logPolicy(""), timeout(parseNonNegativeDuration("0s"))
         {
             while (true)
             {

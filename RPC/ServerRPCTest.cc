@@ -55,6 +55,8 @@ class RPCServerRPCTest : public ::testing::Test {
                            uint8_t serviceSpecificErrorVersion,
                            uint16_t opCode)
     {
+       //std::cout << "Before fill - buffer length: " << request.getLength() << std::endl;
+
         if (request.getLength() == 0) {
             request.setData(
                     new RequestHeaderVersion1(),
@@ -69,6 +71,8 @@ class RPCServerRPCTest : public ::testing::Test {
         header.serviceSpecificErrorVersion = serviceSpecificErrorVersion;
         header.opCode = opCode;
         header.toBigEndian();
+
+        //std::cout << "after finishinge fill - buffer length: " << request.getLength() << std::endl;
     }
 
     void
@@ -148,9 +152,14 @@ TEST_F(RPCServerRPCTest, getRequest_inactive) {
 
 TEST_F(RPCServerRPCTest, getRequest_invalid) {
     fillRequestHeader(1, 2, 3, 4);
+    //request.setData(new char[2], 2, Core::Buffer::deleteArrayFn<char>);
     call();
     LogCabin::ProtoBuf::TestMessage actual;
+
     LogCabin::Core::Debug::setLogPolicy({{"", "ERROR"}});
+   
+   // bool result = serverRPC.getRequest(actual);
+    //EXPECT_FALSE(result);
     EXPECT_FALSE(serverRPC.getRequest(actual));
     EXPECT_EQ(Status::INVALID_REQUEST, getStatus());
     EXPECT_FALSE(serverRPC.needsReply());
