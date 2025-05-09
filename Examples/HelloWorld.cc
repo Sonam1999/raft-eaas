@@ -5,6 +5,7 @@
 #include <LogCabin/Debug.h>
 #include <LogCabin/Util.h>
 #include "eaas/EaaS.h"
+#include <sstream>
 
 using namespace LogCabin::Client;
 // Tree tree;
@@ -22,7 +23,7 @@ namespace
     {
     public:
         OptionParser(int &argc, char **&argv)
-            : argc(argc), argv(argv), cluster("node1:26257"), logPolicy(""), timeout(parseNonNegativeDuration("0s"))
+            : argc(argc), argv(argv), cluster(""), logPolicy(""), timeout(parseNonNegativeDuration("0s"))
         {
             while (true)
             {
@@ -188,10 +189,35 @@ int Delete(const std::uint64_t &key)
     tree->removeDirectoryEx(keyString);
     return 0;
 }
+std::vector<std::string> parseCluster(const std::string& clusterStr) {
+    std::vector<std::string> servers;
+    std::stringstream ss(clusterStr);
+    std::string server;
+    while (std::getline(ss, server, ',')) {
+        servers.push_back(server);
+    }
+    return servers;
+}
+
 void runRaft()
 {
-    Cluster cluster(globalOptions->cluster);
-    tree = std::unique_ptr<Tree>(new Tree(cluster.getTree()));
+//    Cluster cluster(globalOptions->cluster);
+    auto servers = parseCluster(globalOptions->cluster);
+    std::unique_ptr<Cluster> clusterPtr;
+    for (const auto& address : servers) {
+            clusterPtr.reset(new Cluster(address));
+            std::cout << "Connected to: " << address << std::endl;
+            //break;
+    }
+
+    if (!clusterPtr) {
+        std::cerr << "Failed to connect to any LogCabin server." << std::endl;
+        return;
+    }
+
+
+//    tree = std::unique_ptr<Tree>(new Tree(clusterPtr.getTree()));
+    tree = std::unique_ptr<Tree>(new Tree(clusterPtr->getTree()));
     tree->setTimeout(globalOptions->timeout);
     std::uint64_t key = 1;
     int size = 5;
